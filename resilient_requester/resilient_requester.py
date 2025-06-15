@@ -9,7 +9,7 @@ from resilient_requester.helpers.helper_functions import check_params
 class Requester:
 
     @staticmethod
-    def request_page(url, proxy=None, headers=None, timeout=0, retries=0):
+    def get_request(url, proxy=None, headers=None, timeout=0, retries=0):
 
         proxy, headers, timeout, retries = check_params(proxy, headers, timeout, retries)
 
