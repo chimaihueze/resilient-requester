@@ -1,6 +1,6 @@
 [project]
 name = "resilient-requester"
-version = "0.1.2"
+version = "0.1.3"
 description = "A simple HTTP requester with retry and proxy support"
 authors = [
     { name = "Chima Ihueze", email = "chimaihueze@outlook.com" }
