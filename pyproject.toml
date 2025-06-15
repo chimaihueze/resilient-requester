@@ -1,7 +1,10 @@
 [project]
 name = "resilient-requester"
 version = "0.1.0"
-description = "Add your description here"
+description = "A simple HTTP requester with retry and proxy support"
+authors = [
+    { name="Chima Ihueze", email="chimaihueze@outlook.com" }
+]
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
