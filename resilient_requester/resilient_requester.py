@@ -4,29 +4,17 @@ import random
 
 import requests
 
-from requester.helpers.helper_functions import get_headers
+from resilient_requester.helpers.helper_functions import get_headers, check_params
 
 
 class Requester:
     def __init__(self):
         self.headers = get_headers()
 
-    def request_page(self, url, proxy=None, headers=None, timeout=0, retries=0):
+    @staticmethod
+    def request_page(url, proxy=None, headers=None, timeout=0, retries=0):
 
-        if not timeout or timeout < 5:
-            logging.info("Timeout must be at least 5 seconds. Setting to 5 seconds.")
-            timeout = 5
-
-        if not retries or retries < 1:
-            logging.info("Retries must be at least 2. Setting to 1.")
-            retries = 1
-
-        if not headers:
-            logging.info("No headers provided. Setting to default.")
-            headers = self.headers
-
-        if not proxy:
-            logging.info("No proxy provided. Adding a proxy is advised.")
+        proxy, headers, timeout, retries = check_params(proxy, headers, timeout, retries)
 
         attempts = 0
 
@@ -36,6 +24,7 @@ class Requester:
                 logging.info(f"Requesting page: {url}")
                 response = requests.get(url=url, proxies=proxy, headers=headers, timeout=timeout)
                 response.raise_for_status()
+                logging.info(f"Request successful: {response.status_code}, returning response now.")
                 return response
             except Exception as e:
                 logging.error(f"Request failed: {e}")
