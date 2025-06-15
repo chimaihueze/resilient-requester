@@ -1,1 +1,1 @@
-from .requester import Requester
+from .resilient_requester import Requester
