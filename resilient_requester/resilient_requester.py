@@ -15,7 +15,7 @@ class Requester:
                 logging.info(f"Sending a GET REQUEST: {url}")
                 response = requests.get(url=url, proxies=proxy, headers=headers, timeout=timeout)
                 response.raise_for_status()
-                logging.info(f"Request successful: {response.status_code}, returning response now.")
+                logging.info(f"Request successful: {response.status_code}.")
                 return response
             except Exception as e:
                 attempts = handle_exception(e, attempts, retries)
