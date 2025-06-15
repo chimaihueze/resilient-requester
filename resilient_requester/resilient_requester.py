@@ -3,13 +3,10 @@ import time
 import random
 
 import requests
-
-from resilient_requester.helpers.helper_functions import get_headers, check_params
+from resilient_requester.helpers.helper_functions import check_params
 
 
 class Requester:
-    def __init__(self):
-        self.headers = get_headers()
 
     @staticmethod
     def request_page(url, proxy=None, headers=None, timeout=0, retries=0):
