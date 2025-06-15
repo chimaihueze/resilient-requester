@@ -1,4 +1,6 @@
 import logging
+import random
+import time
 
 from fake_useragent import UserAgent
 
@@ -39,3 +41,14 @@ def check_params(proxy, headers, timeout, retries):
         logging.info("No proxy provided. Adding a proxy is advised.")
 
     return proxy, headers, timeout, retries
+
+def handle_exception(e, attempts, retries):
+    logging.error(f"Exception occurred: {e}")
+    if attempts < retries:
+        attempts += 1
+        waiting_time = random.randint(1, 5)
+        logging.info(f"Retrying in {waiting_time} seconds...")
+        time.sleep(waiting_time)
+        return attempts
+    logging.error(f"Maximum number of retries {retries} reached. Exiting...")
+    return None
